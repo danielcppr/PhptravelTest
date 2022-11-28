@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhptravelTest
+namespace PhptravelTest.Tests
 {
     public class SignupTest : IDisposable
     {
         public IWebDriver Driver { get; set; } = new ChromeDriver("D:\\3rdparty\\chrome");
-        
+
         public const string URL = "https://phptravels.net/";
         public const string PAGE = "signup";
 
@@ -59,7 +59,7 @@ namespace PhptravelTest
             var executionStart = DateTime.Now;
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.PollingInterval = TimeSpan.FromSeconds(1);
-            wait.Until(d => (DateTime.Now - executionStart) - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
+            wait.Until(d => DateTime.Now - executionStart - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
 
 
             Assert.False(IsValidForm(firstNameIndex) ?? true);
@@ -76,7 +76,7 @@ namespace PhptravelTest
             var executionStart = DateTime.Now;
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.PollingInterval = TimeSpan.FromSeconds(1);
-            wait.Until(d => (DateTime.Now - executionStart) - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
+            wait.Until(d => DateTime.Now - executionStart - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
 
 
             Assert.False(IsValidForm(lastNameIndex) ?? true);
@@ -94,7 +94,7 @@ namespace PhptravelTest
             var executionStart = DateTime.Now;
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.PollingInterval = TimeSpan.FromSeconds(1);
-            wait.Until(d => (DateTime.Now - executionStart) - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
+            wait.Until(d => DateTime.Now - executionStart - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
 
 
             Assert.False(IsValidForm(phoneIndex) ?? true);
@@ -113,9 +113,9 @@ namespace PhptravelTest
             var executionStart = DateTime.Now;
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.PollingInterval = TimeSpan.FromSeconds(1);
-            wait.Until(d => (DateTime.Now - executionStart) - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
+            wait.Until(d => DateTime.Now - executionStart - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
 
-            
+
             Assert.False(IsValidForm(emailIndex) ?? true);
         }
 
@@ -130,7 +130,7 @@ namespace PhptravelTest
             var executionStart = DateTime.Now;
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.PollingInterval = TimeSpan.FromSeconds(1);
-            wait.Until(d => (DateTime.Now - executionStart) - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
+            wait.Until(d => DateTime.Now - executionStart - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
 
             Assert.False(IsValidForm(passwordIndex) ?? true, "Password need to have more than 7 characters");
         }
@@ -140,12 +140,12 @@ namespace PhptravelTest
             var form = GetForm();
             string? indexBuilder = index is null ? string.Empty : $"[{index}]";
 
-            bool? isValidForm = (Boolean)((IJavaScriptExecutor)Driver).ExecuteScript($"return arguments[0]{indexBuilder}.checkValidity();", form);
+            bool? isValidForm = (bool)((IJavaScriptExecutor)Driver).ExecuteScript($"return arguments[0]{indexBuilder}.checkValidity();", form);
 
             var executionStart = DateTime.Now;
             var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             wait.PollingInterval = TimeSpan.FromSeconds(1);
-            wait.Until(d => (DateTime.Now - executionStart) - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
+            wait.Until(d => DateTime.Now - executionStart - TimeSpan.FromMilliseconds(3000) > TimeSpan.Zero);
 
             return isValidForm;
         }

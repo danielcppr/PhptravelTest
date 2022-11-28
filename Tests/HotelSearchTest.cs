@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhptravelTest
+namespace PhptravelTest.Tests
 {
     public class HotelSearchTest : IDisposable
     {
